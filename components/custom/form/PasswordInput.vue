@@ -1,14 +1,18 @@
 <template>
   <v-text-field
-    label="Senha"
+    :label="props.label || 'Senha'"
     v-model="value"
     :autocomplete="props.autoComplete"
     :name="props.name"
+    :rules="props.rules"
   ></v-text-field>
 </template>
 
 <script setup lang="ts">
 const props = defineProps({
+  label: {
+    type: String,
+  },
   modelValue: {
     type: String,
     required: true,
@@ -19,9 +23,13 @@ const props = defineProps({
   name: {
     type: String,
   },
+  rules: {
+    type: Array,
+    default: [],
+  },
 });
 const emit = defineEmits(["update:modelValue"]);
-const value = useState("CustomFormPasswordInput", () => props.modelValue);
+const value = ref(props.modelValue);
 
 watchEffect(() => {
   emit("update:modelValue", value.value);
