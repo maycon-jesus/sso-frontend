@@ -102,6 +102,7 @@
 </template>
 
 <script lang="ts" setup>
+import { useToast } from "vue-toastification";
 import { useTheme } from "vuetify";
 import * as yup from "yup";
 
@@ -115,6 +116,7 @@ const form = useState(() => ({
 }));
 const loading = useState(() => false);
 const { $api } = useNuxtApp();
+const toast = useToast();
 const router = useRouter();
 const theme = useTheme();
 
@@ -129,12 +131,17 @@ const validatePasswordsEquals = () => {
 const onSubmit = () => {
   if (!formValid.value) return;
   loading.value = true;
+
+  const nForm = { ...form.value };
+  delete nForm.passwordConfirm;
+
   $api
     .post<{
       token: string;
-    }>("/register", form.value)
+    }>("/register", nForm)
     .then(() => {
       router.push("/");
+      toast.success("Conta criada com sucesso!");
     })
     .catch(() => {
       loading.value = false;

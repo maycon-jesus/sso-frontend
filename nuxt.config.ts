@@ -1,6 +1,6 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-    css: ['vuetify/lib/styles/main.sass', 'assets/scss/global.scss'],
+    css: ['vuetify/lib/styles/main.sass', 'vue-toastification/dist/index.css', 'assets/scss/global.scss'],
     build:{
         transpile: ['vuetify']
     },

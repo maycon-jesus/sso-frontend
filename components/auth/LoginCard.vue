@@ -66,6 +66,7 @@
 </template>
 
 <script lang="ts" setup>
+import { useToast } from "vue-toastification";
 import { useTheme } from "vuetify";
 
 const formValid = useState(() => false);
@@ -75,6 +76,7 @@ const form = useState(() => ({
 }));
 const loading = useState(() => false);
 const { $api } = useNuxtApp();
+const toast = useToast();
 const authTokenCookie = useCookie("AUTH_TOKEN");
 const router = useRouter();
 const theme = useTheme();
@@ -89,8 +91,10 @@ const onSubmit = () => {
     .then((res) => {
       authTokenCookie.value = res.data.token;
       router.push("/minha-conta");
+      toast.success("Autenticação feita com sucesso!");
     })
-    .catch(() => {
+    .catch((err) => {
+      console.error(err);
       loading.value = false;
     });
 };

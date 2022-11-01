@@ -1,12 +1,13 @@
 <template>
   <div :class="$style.main">
-    <AuthLoginCard :class="$style['card-login']"/>
+    <AuthLoginCard :class="$style['card-login']" />
   </div>
 </template>
 
 <script setup>
 definePageMeta({
   layout: "clean",
+  middleware: ["auth"],
 });
 </script>
 
