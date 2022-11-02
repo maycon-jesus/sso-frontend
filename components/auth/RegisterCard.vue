@@ -143,7 +143,10 @@ const onSubmit = () => {
       router.push("/");
       toast.success("Conta criada com sucesso!");
     })
-    .catch(() => {
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
       loading.value = false;
     });
 };

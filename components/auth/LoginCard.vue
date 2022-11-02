@@ -95,6 +95,8 @@ const onSubmit = () => {
     })
     .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
       loading.value = false;
     });
 };
