@@ -8,9 +8,10 @@ export default defineNuxtConfig({
     head: {
       link: [
         {
-          rel: 'stylesheet',
+          rel: 'preload',
           href: 'https://cdn.jsdelivr.net/npm/vue-toastification@2.0.0-rc.5/dist/index.css',
-          crossorigin: ''
+          crossorigin: '',
+          
         },
         {
           rel: "stylesheet",
@@ -18,7 +19,7 @@ export default defineNuxtConfig({
           crossorigin: ''
         },
         {
-          rel: "stylesheet",
+          rel: "preload",
           href: "https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css",
           crossorigin: "",
         },
