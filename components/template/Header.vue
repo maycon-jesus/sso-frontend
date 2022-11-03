@@ -12,9 +12,9 @@
 
     <v-spacer></v-spacer>
 
-    <v-menu>
-      <template v-slot:activator="{ props }">
-        <div v-bind="props">
+    <client-only>
+      <template #fallback>
+        <div>
           <v-btn color="primary" icon class="mr-3">
             <v-avatar>
               <v-img :src="userData?.avatarUrl"></v-img>
@@ -23,10 +23,22 @@
         </div>
       </template>
 
-      <v-list nav>
-        <v-btn color="red" @click="doLogout()">Sair</v-btn>
-      </v-list>
-    </v-menu>
+      <v-menu>
+        <template v-slot:activator="{ props }">
+          <div v-bind="props">
+            <v-btn color="primary" icon class="mr-3">
+              <v-avatar>
+                <v-img :src="userData?.avatarUrl"></v-img>
+              </v-avatar>
+            </v-btn>
+          </div>
+        </template>
+
+        <v-list nav>
+          <v-btn color="red" @click="doLogout()">Sair</v-btn>
+        </v-list>
+      </v-menu>
+    </client-only>
   </v-app-bar>
 </template>
 

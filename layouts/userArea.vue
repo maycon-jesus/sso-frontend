@@ -2,25 +2,40 @@
   <v-app>
     <TemplateHeader />
     <!-- Sizes your content based upon application components -->
+    <v-navigation-drawer v-model="loggedDrawer.open">
+      <v-list nav>
+        <v-list-subheader title="Conta" />
+        <v-list-item
+          title="Informações Pessoais"
+          to="/minha-conta"
+          tag="NuxtLink"
+        />
+        <v-list-item
+          title="Segurança"
+          to="/minha-conta/seguranca"
+          tag="NuxtLink"
+        />
+        <v-list-subheader title="Desenvolvedor" />
+        <v-list-item
+          title="Aplicativos"
+          to="/desenvolvedor/aplicativos"
+          tag="NuxtLink"
+        />
+      </v-list>
+    </v-navigation-drawer>
+
     <v-main>
       <slot v-if="userData" />
     </v-main>
 
-    <v-footer
-      :elevation="4"
-      :style="{
-        flex: 0,
-      }"
-    >
-      Footer
-    </v-footer>
+    <TemplateFooter />
   </v-app>
 </template>
 
 <script lang="ts" setup>
 import { $apiFetch } from "~~/helpers/api";
 const userData = useUserData();
-
+const loggedDrawer = useLoggedDrawer();
 const me = useAsyncData<any>(async () =>
   $apiFetch({
     path: "/users/me",
