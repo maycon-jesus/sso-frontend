@@ -1,19 +1,51 @@
 <template>
-    <v-app>
+  <v-app>
+    <TemplateHeader />
+    <!-- Sizes your content based upon application components -->
+    <v-navigation-drawer v-model="loggedDrawer.open">
+      <v-list nav>
+        <v-list-subheader title="Conta" />
+        <v-list-item
+          title="Informações Pessoais"
+          to="/minha-conta"
+          tag="NuxtLink"
+        />
+        <v-list-item
+          title="Segurança"
+          to="/minha-conta/seguranca"
+          tag="NuxtLink"
+        />
+        <v-list-subheader title="Desenvolvedor" />
+        <v-list-item
+          title="Aplicativos"
+          to="/desenvolvedor/aplicativos"
+          tag="NuxtLink"
+        />
+      </v-list>
+    </v-navigation-drawer>
 
-        <v-app-bar app>
-            Header
-        </v-app-bar>
+    <v-main>
+      <slot v-if="userData" />
+    </v-main>
 
-        <!-- Sizes your content based upon application components -->
-        <v-main>
-            <slot/>
-        </v-main>
-
-        <v-footer :elevation="4" :style="{
-            flex: 0
-        }">
-            Footer
-        </v-footer>
-    </v-app>
+    <TemplateFooter />
+  </v-app>
 </template>
+
+<script lang="ts" setup>
+import { $apiFetch } from "~~/helpers/api";
+const userData = useUserData();
+const loggedDrawer = useLoggedDrawer();
+const me = useAsyncData<any>(async () =>
+  $apiFetch({
+    path: "/users/me",
+  })
+);
+
+watchEffect(() => {
+  userData.value = me.data.value;
+  if (userData.value) {
+    userData.value.avatarUrl = `https://www.gravatar.com/avatar/${userData.value.avatarUrl}?s=32&d=identicon`;
+  }
+});
+</script>

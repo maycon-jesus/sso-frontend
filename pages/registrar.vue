@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.main">
-    <AuthLoginCard :class="$style['card-login']" />
+    <AuthRegisterCard :class="$style['card-register']" />
   </div>
 </template>
 
@@ -18,7 +18,7 @@ definePageMeta({
   height: 100%;
 }
 
-.card-login {
+.card-register {
   width: 500px;
 }
 </style>
