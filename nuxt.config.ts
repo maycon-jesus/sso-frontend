@@ -4,9 +4,16 @@ export default defineNuxtConfig({
   css: [
     "vuetify/lib/styles/main.sass",
     "vue-toastification/dist/index.css",
-    "@mdi/font/css/materialdesignicons.css",
     "assets/scss/global.scss",
   ],
+  head:{
+    link:[
+      {
+        rel:'stylesheet',
+        href:'https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css'
+      }
+    ]
+  },
   build: {
     transpile: ["vuetify", "vue-toastification", "classnames"],
   },
