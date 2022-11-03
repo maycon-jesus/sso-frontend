@@ -1,11 +1,15 @@
 <template>
   <v-card>
     <template v-slot:title>
-      <v-img
+      <nuxt-img
         :src="`/assets/images/logo/logo-${
           theme.global.current.value.dark ? 'dark' : 'light'
         }.svg`"
-      />
+        preload
+        :style="{
+          width: '100%',
+        }"
+      ></nuxt-img>
     </template>
     <v-container>
       <v-form
