@@ -22,8 +22,9 @@ export default defineNuxtConfig({
         },
         {
           rel: "stylesheet",
-          href: "https://cdnjs.cloudflare.com/ajax/libs/vuetify/3.0.0/vuetify.css",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/vuetify/3.0.0/vuetify.min.css",
           crossorigin: "",
+          prefetch: ""
         },
         {
           rel: "stylesheet",
