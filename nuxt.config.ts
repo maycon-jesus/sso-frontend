@@ -17,9 +17,7 @@ export default defineNuxtConfig({
         {
           rel: "stylesheet",
           href: 'https://cdnjs.cloudflare.com/ajax/libs/vuetify/3.0.0/vuetify.css',
-          crossorigin: '',
-          media: "none",
-          onload: "if(media!='all')media='all'"
+          crossorigin: ''
         },
         {
           rel: "stylesheet",
