@@ -8,6 +8,14 @@ export default defineNuxtConfig({
     head: {
       link: [
         {
+          rel: 'preconnect',
+          href:'https://cdnjs.cloudflare.com'
+        },
+        {
+          rel: 'preconnect',
+          href:'https://cdn.jsdelivr.net'
+        },
+        {
           rel: 'stylesheet',
           href: 'https://cdn.jsdelivr.net/npm/vue-toastification@2.0.0-rc.5/dist/index.css',
           crossorigin: '',
