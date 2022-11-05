@@ -4,6 +4,7 @@
     :style="{
       flex: 0,
     }"
+    app
   >
     <v-container>
       <v-row align="center">
