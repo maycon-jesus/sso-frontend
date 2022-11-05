@@ -33,9 +33,17 @@
 </template>
 
 <script lang="ts" setup>
+import { useDisplay } from "vuetify/lib/framework.mjs";
 import { $apiFetch } from "~~/helpers/api";
+
+const display = useDisplay();
 const userData = useUserData();
 const loggedDrawer = useLoggedDrawer();
+
+if (display.lgAndUp.value) {
+  loggedDrawer.value.open = true;
+}
+
 const me = useAsyncData<any>(async () =>
   $apiFetch({
     path: "/users/me",
