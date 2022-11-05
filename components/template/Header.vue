@@ -1,5 +1,9 @@
 <template>
   <v-app-bar app>
+    <v-btn class="ml-1" icon @click="loggedDrawer.open = !loggedDrawer.open"
+      ><v-icon icon="mdi-menu"
+    /></v-btn>
+
     <img
       :src="`/assets/images/logo/logo-${
         theme.global.current.value.dark ? 'dark' : 'light'
@@ -45,6 +49,7 @@
 <script lang="ts" setup>
 import { doLogout } from "~/composables/userData";
 import { useTheme } from "vuetify";
+const loggedDrawer = useLoggedDrawer();
 
 const userData = useUserData();
 const theme = useTheme();
