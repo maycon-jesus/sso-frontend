@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <template v-slot:title>
+    <template #title>
       <nuxt-img
         :src="`/assets/images/logo/logo-${
           theme.global.current.value.dark ? 'dark' : 'light'
@@ -9,58 +9,61 @@
         :style="{
           width: '100%',
         }"
-      ></nuxt-img>
+      />
     </template>
     <v-container>
       <v-form
         v-model="formValid"
-        @submit.prevent="onSubmit"
         :disabled="loading"
+        @submit.prevent="onSubmit"
       >
         <v-row class="mb-2">
           <v-col cols="12">
-            <h1 class="text-h4 text-center">Entrar</h1>
+            <h1 class="text-h4 text-center">
+              Entrar
+            </h1>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12">
             <v-text-field
+              v-model="form.email"
               label="Email"
               autocomplete="email"
               inputmode="email"
               name="email"
-              v-model="form.email"
               :rules="[$validator.presets.emailRequired]"
-            ></v-text-field>
+            />
           </v-col>
           <v-col cols="12">
             <CustomFormPasswordInput
-              autoComplete="password"
-              name="password"
               v-model="form.password"
+              auto-complete="password"
+              name="password"
               :rules="[$validator.presets.passwordRequired]"
             />
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="12"
-            ><v-btn
+          <v-col cols="12">
+            <v-btn
               block
               size="large"
               color="primary"
               type="submit"
               :loading="loading"
-              >Entrar</v-btn
-            ></v-col
-          >
+            >
+              Entrar
+            </v-btn>
+          </v-col>
         </v-row>
         <v-row>
           <v-col cols="12">
-            <span class="text-body-1"
-              >Não possui conta?
-              <NuxtLink to="/registrar" class="link-default"
-                >Criar conta</NuxtLink
-              >
+            <span class="text-body-1">Não possui conta?
+              <NuxtLink
+                to="/registrar"
+                class="link-default"
+              >Criar conta</NuxtLink>
             </span>
           </v-col>
         </v-row>
@@ -70,38 +73,39 @@
 </template>
 
 <script lang="ts" setup>
-import { useToast } from "vue-toastification";
-import { useTheme } from "vuetify";
+import { useToast } from 'vue-toastification'
+import { useTheme } from 'vuetify'
 
-const formValid = useState(() => false);
+const formValid = useState(() => false)
 const form = useState(() => ({
-  email: "",
-  password: "",
-}));
-const loading = useState(() => false);
-const { $api } = useNuxtApp();
-const toast = useToast();
-const authTokenCookie = useCookie("AUTH_TOKEN");
-const router = useRouter();
-const theme = useTheme();
+  email: '',
+  password: ''
+}))
+const loading = useState(() => false)
+const { $api } = useNuxtApp()
+const toast = useToast()
+const authTokenCookie = useCookie('AUTH_TOKEN')
+const router = useRouter()
+const theme = useTheme()
 
 const onSubmit = () => {
-  if (!formValid.value) return;
-  loading.value = true;
+  if (!formValid.value) { return }
+  loading.value = true
   $api
     .post<{
       token: string;
-    }>("/auth/login", form.value)
+    }>('/auth/login', form.value)
     .then((res) => {
-      authTokenCookie.value = res.data.token;
-      router.push("/minha-conta");
-      toast.success("Autenticação feita com sucesso!");
+      authTokenCookie.value = res.data.token
+      router.push('/minha-conta')
+      toast.success('Autenticação feita com sucesso!')
     })
     .catch((err) => {
-      console.error(err);
+      console.error(err)
+      toast.error(err.response ? err.response.data.message : err.message)
     })
     .finally(() => {
-      loading.value = false;
-    });
-};
+      loading.value = false
+    })
+}
 </script>

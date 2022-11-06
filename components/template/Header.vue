@@ -1,8 +1,12 @@
 <template>
   <v-app-bar app>
-    <v-btn class="ml-1" icon @click="loggedDrawer.open = !loggedDrawer.open"
-      ><v-icon icon="mdi-menu"
-    /></v-btn>
+    <v-btn
+      class="ml-1"
+      icon
+      @click="loggedDrawer.open = !loggedDrawer.open"
+    >
+      <v-icon icon="mdi-menu" />
+    </v-btn>
 
     <img
       :src="`/assets/images/logo/logo-${
@@ -12,34 +16,36 @@
         [$style['image-logo']]: true,
         'ml-3': true,
       }"
-    />
+    >
 
-    <v-spacer></v-spacer>
+    <v-spacer />
 
     <client-only>
       <template #fallback>
         <div>
           <v-btn color="primary" icon class="mr-3">
             <v-avatar>
-              <v-img :src="userData?.avatarUrl"></v-img>
+              <v-img :src="userStore.userData?.avatarUrl" />
             </v-avatar>
           </v-btn>
         </div>
       </template>
 
       <v-menu>
-        <template v-slot:activator="{ props }">
+        <template #activator="{ props }">
           <div v-bind="props">
             <v-btn color="primary" icon class="mr-3">
               <v-avatar>
-                <v-img :src="userData?.avatarUrl"></v-img>
+                <v-img :src="userStore.userData?.avatarUrl" />
               </v-avatar>
             </v-btn>
           </div>
         </template>
 
         <v-list nav>
-          <v-btn color="red" @click="doLogout()">Sair</v-btn>
+          <v-btn color="red" @click="doLogout()">
+            Sair
+          </v-btn>
         </v-list>
       </v-menu>
     </client-only>
@@ -47,12 +53,12 @@
 </template>
 
 <script lang="ts" setup>
-import { doLogout } from "~/composables/userData";
-import { useTheme } from "vuetify";
-const loggedDrawer = useLoggedDrawer();
-
-const userData = useUserData();
-const theme = useTheme();
+import { useTheme } from 'vuetify'
+import { doLogout } from '~/composables/userData'
+import { useUserStore } from '~~/store/user'
+const loggedDrawer = useLoggedDrawer()
+const userStore = useUserStore()
+const theme = useTheme()
 </script>
 
 <style lang="scss" module>

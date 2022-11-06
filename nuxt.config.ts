@@ -34,6 +34,11 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxt/image-edge',
+    ['@pinia/nuxt', {
+      autoImports: [
+        'defineStore'
+      ]
+    }],
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
         config.plugins.push(vuetify())

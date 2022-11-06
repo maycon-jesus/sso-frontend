@@ -25,7 +25,7 @@
     </v-navigation-drawer>
 
     <v-main>
-      <slot v-if="userData" />
+      <slot v-if="userStore.userData" />
     </v-main>
 
     <TemplateFooter />
@@ -33,27 +33,18 @@
 </template>
 
 <script lang="ts" setup>
-import { useDisplay } from "vuetify/lib/framework.mjs";
-import { $apiFetch } from "~~/helpers/api";
+import { useDisplay } from 'vuetify/lib/framework.mjs'
+import { useUserStore } from '~/store/user'
 
-const display = useDisplay();
-const userData = useUserData();
-const loggedDrawer = useLoggedDrawer();
+const display = useDisplay()
+const loggedDrawer = useLoggedDrawer()
+const userStore = useUserStore()
 
 if (display.lgAndUp.value) {
-  loggedDrawer.value.open = true;
+  loggedDrawer.value.open = true
 }
 
-const me = useAsyncData<any>(async () =>
-  $apiFetch({
-    path: "/users/me",
-  })
-);
-
-watchEffect(() => {
-  userData.value = me.data.value;
-  if (userData.value) {
-    userData.value.avatarUrl = `https://www.gravatar.com/avatar/${userData.value.avatarUrl}?s=32&d=identicon`;
-  }
-});
+useAsyncData<any>(() =>
+  userStore.getUserDataFetch()
+)
 </script>

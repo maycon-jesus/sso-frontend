@@ -71,7 +71,7 @@
             <CustomFormPasswordInput
               label="Repita a sua senha"
               autoComplete="password"
-              name="password"
+              name="repeat-password"
               v-model="form.passwordConfirm"
               :rules="[
                 $validator.presets.passwordRequired,
