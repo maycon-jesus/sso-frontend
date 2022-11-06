@@ -1,8 +1,7 @@
 <template>
   <client-only>
     <v-dialog v-model="modelValue" max-width="550">
-      <v-card>
-        <v-card-title>Editar informações básicas</v-card-title>
+      <custom-dialog-card title="Editar informações básicas" @on-close="modelValue = false">
         <v-card-text>
           <v-row>
             <v-col cols="12">
@@ -21,7 +20,7 @@
             Salvar
           </v-btn>
         </v-card-actions>
-      </v-card>
+      </custom-dialog-card>
     </v-dialog>
   </client-only>
 </template>
