@@ -58,6 +58,7 @@ const saveForm = () => {
     .then(() => {
       toast.success('Alterações salvas com sucesso!')
       modelValue.value = false
+      userStore.getUserData()
     })
     .catch((err) => {
       console.error(err)
