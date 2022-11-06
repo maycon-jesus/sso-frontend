@@ -48,6 +48,14 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify', 'vue-toastification', 'classnames']
   },
+  vite: {
+    ssr: {
+      noExternal: ['vuetify']
+    },
+    define: {
+      'process.env.DEBUG': false
+    }
+  },
   runtimeConfig: {
     public: {
       BASE_URL_API: process.env.NUXT_PUBLIC_BASE_URL_API
