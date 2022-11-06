@@ -5,11 +5,14 @@
       flex: 0,
     }"
     app
+    absolute
   >
     <v-container>
       <v-row align="center">
         <v-col cols="">
-          <p class="text-h6"><strong>Maycon</strong> Jesus</p>
+          <p class="text-h6">
+            <strong>Maycon</strong> Jesus
+          </p>
         </v-col>
         <v-col cols="auto">
           <v-btn icon variant="text">
