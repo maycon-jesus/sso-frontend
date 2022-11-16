@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia'
 
 export const useUserStore = defineStore('user', {
-  state () {
-    return {
-      userData: null
-    }
-  },
+  state: (): {
+    userData: null|any
+  } => ({
+    userData: null
+  }),
   actions: {
     async getUserData () {
       const { $api } = useNuxtApp()

@@ -16,7 +16,13 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn variant="elevated" color="success" prepend-icon="mdi-content-save" :loading="loading" @click="saveForm()">
+          <v-btn
+            variant="elevated"
+            color="success"
+            prepend-icon="mdi-content-save"
+            :loading="loading"
+            @click="saveForm()"
+          >
             Salvar
           </v-btn>
         </v-card-actions>

@@ -1,4 +1,4 @@
 export const useLoggedDrawer = () =>
-  useState("loggedDrawer", () => ({
-    open: false,
-  }));
+  useState('loggedDrawer', () => ({
+    open: false
+  }))
