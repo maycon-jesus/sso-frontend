@@ -6,8 +6,8 @@
 
 <script setup>
 definePageMeta({
-  layout: "clean",
-});
+  layout: 'clean'
+})
 </script>
 
 <style module lang="scss">

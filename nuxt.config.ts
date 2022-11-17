@@ -41,9 +41,10 @@ export default defineNuxtConfig({
     }],
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
-        config.plugins.push(vuetify())
+        config.plugins?.push(vuetify())
       })
-    }
+    },
+    'nuxt-purgecss'
   ],
   build: {
     transpile: ['vuetify', 'vue-toastification', 'classnames']
