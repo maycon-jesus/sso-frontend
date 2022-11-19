@@ -1,6 +1,9 @@
 <template>
   <v-container>
     <lazy-my-account-modal-change-password v-model="modalChangePasswordOpen" />
+
+    <template-title title="Segurança" />
+
     <v-row justify="center">
       <v-col cols="12" sm="10" md="8" lg="6">
         <v-card>
