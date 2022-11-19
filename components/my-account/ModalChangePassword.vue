@@ -1,7 +1,7 @@
 <template>
   <ClientOnly>
     <v-dialog v-model="modelValue" max-width="550">
-      <CustomDialogCard title="Alterar senha">
+      <CustomDialogCard title="Alterar senha" @on-close="onClose">
         <v-form ref="formElement" v-model="formValid" @submit.prevent="onSubmit">
           <v-card-text>
             <v-row>
@@ -80,6 +80,11 @@ const resetForm = () => {
   form.value.newPasswordRepeat = ''
 }
 
+const onClose = () => {
+  resetForm()
+  modelValue.value = false
+}
+
 const onSubmit = () => {
   formElement.value?.validate()
   if (!formValid.value) { return }
@@ -89,8 +94,7 @@ const onSubmit = () => {
     .post('/users/me/security/password', { oldPassword: currentPassword, newPassword })
     .then(() => {
       toast.success('Senha alterada')
-      modelValue.value = false
-      resetForm()
+      onClose()
     })
     .catch((err) => {
       toast.error(`${err.response?.data?.message || err.message}`)
