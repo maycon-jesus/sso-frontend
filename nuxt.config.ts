@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   css: ['assets/scss/global.scss'],
   app: {
     head: {
+      titleTemplate: '%s - SSO Maycon Jesus',
       link: [
         {
           rel: 'preconnect',

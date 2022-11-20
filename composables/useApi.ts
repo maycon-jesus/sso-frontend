@@ -8,6 +8,7 @@ export function useApi () {
 
   api.interceptors.request.use((req) => {
     const cookie = useCookie('AUTH_TOKEN')
+    if (!req.headers) { req.headers = {} }
     if (cookie.value) { req.headers.Authorization = cookie.value }
     return req
   })
@@ -15,9 +16,9 @@ export function useApi () {
   return api
 }
 
-export function useApiAsyncData<T> (a:Promise<AxiosResponse<any, any>>):Promise<T> {
+export function useApiAsyncData<T> (axiosPromise:Promise<AxiosResponse<any, any>>):Promise<T> {
   return new Promise((resolve, reject) => {
-    a.then((r) => {
+    axiosPromise.then((r) => {
       resolve(r.data)
     }).catch((err) => {
       reject(new Error(err.response ? err.response.data.message : err.message))

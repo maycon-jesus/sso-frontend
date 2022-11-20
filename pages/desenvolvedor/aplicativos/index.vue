@@ -4,7 +4,7 @@
 
     <v-row justify="end">
       <v-col cols="auto">
-        <v-btn>
+        <v-btn :to="{name: 'app-create'}" tag="NuxtLink">
           Criar aplicativo
         </v-btn>
       </v-col>
@@ -13,7 +13,13 @@
 </template>
 
 <script lang="ts" setup>
+import { useApplicationsStore } from '~/store/applications'
+
 definePageMeta({
   layout: 'user-area'
 })
+
+const applicationsStore = useApplicationsStore()
+
+useAsyncData(() => applicationsStore.getApplicationsFetch())
 </script>

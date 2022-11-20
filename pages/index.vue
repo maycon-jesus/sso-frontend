@@ -8,6 +8,10 @@
 definePageMeta({
   layout: 'clean'
 })
+
+useHead({
+  title: 'Início'
+})
 </script>
 
 <style module lang="scss">
