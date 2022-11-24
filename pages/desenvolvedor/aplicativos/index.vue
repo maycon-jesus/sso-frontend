@@ -16,7 +16,8 @@
 import { useApplicationsStore } from '~/store/applications'
 
 definePageMeta({
-  layout: 'user-area'
+  layout: 'user-area',
+  name: 'apps'
 })
 
 const applicationsStore = useApplicationsStore()
