@@ -5,7 +5,7 @@ export const useApiFetch = () => {
   return $fetch.create({
     baseURL: runtimeConfig.public.BASE_URL_API,
     headers: {
-      Authorization: authTokenCookie.value
+      Authorization: authTokenCookie.value!
     }
   })
 }

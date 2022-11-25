@@ -6,6 +6,9 @@ export default defineNuxtConfig({
   css: ['assets/scss/global.scss'],
   app: {
     head: {
+      htmlAttrs: {
+        lang: 'pt-BR'
+      },
       titleTemplate: '%s - SSO Maycon Jesus',
       link: [
         {

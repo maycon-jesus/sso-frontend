@@ -1,5 +1,12 @@
+type application = {
+  name: string,
+  id: string
+}
+
 export const useApplicationsStore = defineStore('applications', {
-  state: () => ({
+  state: (): {
+    applications: any[]
+  } => ({
     applications: []
   }),
   actions: {
@@ -22,6 +29,14 @@ export const useApplicationsStore = defineStore('applications', {
         method: 'GET'
       }).then((data:any) => {
         this.applications = data
+        return data
+      })
+    },
+    getApplicationFetch (appId: string) {
+      const $api = useApiFetch()
+      return $api<application>('/users/me/applications/' + appId, {
+        method: 'GET'
+      }).then((data) => {
         return data
       })
     }
