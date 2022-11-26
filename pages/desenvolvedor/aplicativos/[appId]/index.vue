@@ -12,7 +12,7 @@
       <v-col cols="12" md="8" lg="9">
         <v-window v-model="currentTab" direction="vertical">
           <v-window-item v-for="tab in tabs" :key="tab.value" :value="tab.value">
-            <component :is="tab.component" />
+            <component :is="tab.component" :app="app.data.value" />
           </v-window-item>
         </v-window>
       </v-col>
