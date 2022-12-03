@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container v-if="app.data.value">
     <template-title :title="app.data.value?.name||'${APP_NAME}'" />
     <v-row>
       <v-col cols="12" md="4" lg="3">
@@ -51,10 +51,13 @@ const tabs = [
   }
 ]
 const currentTab = useState(() => '')
+const app = useAsyncData(() => applicationsStore.getApplicationFetch(route.params.appId.toString()))
+
+useHead({
+  title: app.data.value?.name || 'Detalhes do aplicativo'
+})
 
 onMounted(() => {
   currentTab.value = tabs[0].value
 })
-
-const app = useAsyncData(() => applicationsStore.getApplicationFetch(route.params.appId.toString()))
 </script>
