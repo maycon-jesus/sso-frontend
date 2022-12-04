@@ -1,6 +1,6 @@
 <template>
-  <v-container v-if="app.data.value">
-    <template-title :title="app.data.value?.name||'${APP_NAME}'" />
+  <v-container v-if="applicationsStore.currentApp">
+    <template-title :title="applicationsStore.currentApp?.name||'${APP_NAME}'" />
     <v-row>
       <v-col cols="12" md="4" lg="3">
         <v-tabs v-model="currentTab" direction="vertical">
@@ -12,7 +12,7 @@
       <v-col cols="12" md="8" lg="9">
         <v-window v-model="currentTab" direction="vertical">
           <v-window-item v-for="tab in tabs" :key="tab.value" :value="tab.value">
-            <component :is="tab.component" :app="app.data.value" />
+            <component :is="tab.component" :app="applicationsStore.currentApp" />
           </v-window-item>
         </v-window>
       </v-col>
@@ -25,14 +25,8 @@ import { useApplicationsStore } from '~~/store/applications'
 const GeneralInfoTab = resolveComponent('developer-apps-app-general-info-tab')
 const CredentialsTab = resolveComponent('developer-apps-app-credentials-tab')
 const AuthorizationsListTab = resolveComponent('developer-apps-app-authorizations-list-tab')
-
-definePageMeta({
-  layout: 'user-area',
-  name: 'app'
-})
-
-const route = useRoute()
 const applicationsStore = useApplicationsStore()
+const route = useRoute()
 const tabs = [
   {
     title: 'Informações gerais',
@@ -51,11 +45,18 @@ const tabs = [
   }
 ]
 const currentTab = useState(() => '')
-const app = useAsyncData(() => applicationsStore.getApplicationFetch(route.params.appId.toString()))
+
+definePageMeta({
+  layout: 'user-area',
+  name: 'app',
+  middleware: ['auth']
+})
 
 useHead({
-  title: app.data.value?.name || 'Detalhes do aplicativo'
+  title: applicationsStore.currentApp?.name || 'Detalhes do aplicativo'
 })
+
+useAsyncData(() => applicationsStore.getApplicationFetch(route.params.appId.toString()))
 
 onMounted(() => {
   currentTab.value = tabs[0].value

@@ -6,8 +6,10 @@ type application = {
 export const useApplicationsStore = defineStore('applications', {
   state: (): {
     applications: any[]
+    currentApp: any
   } => ({
-    applications: []
+    applications: [],
+    currentApp: null
   }),
   actions: {
     getApplications () {
@@ -37,6 +39,7 @@ export const useApplicationsStore = defineStore('applications', {
       return $api<application>('/users/me/applications/' + appId, {
         method: 'GET'
       }).then((data) => {
+        this.currentApp = data
         return data
       })
     }
