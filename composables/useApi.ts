@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios'
+import axios from 'axios'
 
 export function useApi () {
   const runtimeConfig = useRuntimeConfig()
@@ -14,14 +14,4 @@ export function useApi () {
   })
 
   return api
-}
-
-export function useApiAsyncData<T> (axiosPromise:Promise<AxiosResponse<any, any>>):Promise<T> {
-  return new Promise((resolve, reject) => {
-    axiosPromise.then((r) => {
-      resolve(r.data)
-    }).catch((err) => {
-      reject(new Error(err.response ? err.response.data.message : err.message))
-    })
-  })
 }
