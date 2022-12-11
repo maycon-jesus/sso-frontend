@@ -15,7 +15,7 @@
 
 <script lang="ts" setup>
 import { useApplicationsStore } from '~~/store/applications'
-const { $api } = useNuxtApp()
+const $api = useApi()
 const applicationsStore = useApplicationsStore()
 
 const saveChanges = () => {

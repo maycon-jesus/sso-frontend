@@ -42,7 +42,7 @@ const props = defineProps({
   }
 })
 const emits = defineEmits(['update:modelValue'])
-const { $api } = useNuxtApp()
+const $api = useApi()
 const modelValue = useState(() => props.modelValue)
 const toast = useToast()
 const userStore = useUserStore()

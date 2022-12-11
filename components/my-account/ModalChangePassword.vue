@@ -57,7 +57,7 @@ const form = useState(() => ({
 }))
 const formValid = useState(() => false)
 const loading = useState(() => false)
-const { $api } = useNuxtApp()
+const $api = useApi()
 const toast = useToast()
 const formElement = ref<VForm|null>(null)
 

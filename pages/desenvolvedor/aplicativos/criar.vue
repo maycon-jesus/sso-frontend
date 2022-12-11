@@ -33,7 +33,7 @@ definePageMeta({
   name: 'app-create'
 })
 
-const { $api } = useNuxtApp()
+const $api = useApi()
 const toast = useToast()
 const router = useRouter()
 const form = useState(() => ({

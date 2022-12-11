@@ -82,7 +82,7 @@ const form = useState(() => ({
   password: ''
 }))
 const loading = useState(() => false)
-const { $api } = useNuxtApp()
+const $api = useApi()
 const toast = useToast()
 const authTokenCookie = useCookie('AUTH_TOKEN')
 const router = useRouter()

@@ -8,7 +8,7 @@ export const useUserStore = defineStore('user', {
   }),
   actions: {
     async getUserData () {
-      const { $api } = useNuxtApp()
+      const $api = useApi()
       const data = await $api.get('/users/me')
       data.data.avatarUrl = `https://www.gravatar.com/avatar/${data.data.avatarUrl}?s=32&d=identicon`
       this.userData = data.data
